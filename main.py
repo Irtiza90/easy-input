@@ -30,7 +30,7 @@ def ask_bool(prompt: str, message=...) -> bool:
     }
 
     while True:
-        inp: bool | None = bools.get( input(prompt) )
+        inp: bool | None = bools.get(input(prompt))
 
         if inp is not None:
             return inp
