@@ -31,13 +31,15 @@ The parsed boolean
 
 ## - `ask_regex`
 #### Will Keep asking for input until the input is a matched by a regex pattern, in that case returns the input that matched
-#### Takes in 3 arguments, both of them should be string types
+#### Takes in 3 arguments
 
 `prompt`: the message to show when asking for input
 
 `pattern`: the regex pattern that matches the input
 
 `message`: The Message to Print out if the validation failed
+
+#### `prompt` and `message` must be of type string, `pattern` can be of type string or re.Pattern
 
 ### Returns
 The input that matched the regex pattern
