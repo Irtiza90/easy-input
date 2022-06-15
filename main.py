@@ -1,5 +1,8 @@
 import re
+from typing import Iterable
 
+
+# TODO: ASK input is in iterable
 
 def ask_int(prompt: str, message: str = None) -> int:
     """
@@ -60,6 +63,30 @@ def ask_bool(prompt: str, message: str = None) -> bool:
         print("Expected boolean" if not message else message)
 
 
+def ask_if_in(prompt: str, ask_in: Iterable, message: str = None) -> str:
+    """
+    Will Keep asking for input until it is found in the iterable
+    
+    The items in the iterable are automatically converted to a string\n
+    So [1, 2.0, print, "hi", True]\n
+    becomes: ["1", "2.0", "print", "hi", "True"], so the input can be parsed
+
+    :param prompt: the prompt to show when asking input
+    :param ask_in: checks if the input given is in the iterable
+    :param message: the message that will be printed if input is invalid
+    :returns: the input string that was found in the iterable
+    """
+    ask_in = {f"{item}" for item in ask_in}
+
+    while True:
+        inp = input(prompt)
+
+        if inp in ask_in:
+            return inp
+
+        print("Invalid Input" if not message else message)
+
+
 def ask_regex(prompt: str, pattern: str | re.Pattern, message: str = None) -> str:
     """
     Will Keep asking for input until it matches regex
@@ -76,3 +103,4 @@ def ask_regex(prompt: str, pattern: str | re.Pattern, message: str = None) -> st
             return inp
 
         print("Invalid Input" if not message else message)
+
