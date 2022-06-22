@@ -79,7 +79,6 @@ def ask_if_in(prompt: str, ask_in: Iterable, message: str = None, *, auto_conver
     """
     if auto_convert is True and isinstance(ask_in, str) is False:
         ask_in = {f"{item}" for item in ask_in}
-    
 
     while True:
         inp = input(prompt)
