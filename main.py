@@ -63,7 +63,7 @@ def ask_bool(prompt: str, message: str = None) -> bool:
         print("Expected boolean" if not message else message)
 
 
-def ask_if_in(prompt: str, ask_in: Iterable, message: str = None) -> str:
+def ask_if_in(prompt: str, ask_in: Iterable, message: str = None, *, auto_convert: bool = True) -> str:
     """
     Will Keep asking for input until it is found in the iterable
     
@@ -74,9 +74,12 @@ def ask_if_in(prompt: str, ask_in: Iterable, message: str = None) -> str:
     :param prompt: the prompt to show when asking input
     :param ask_in: checks if the input given is in the iterable
     :param message: the message that will be printed if input is invalid
+    :param auto_convert: keyword only argument if it's False will not convert ask_in to a set
     :returns: the input string that was found in the iterable
     """
-    ask_in = {f"{item}" for item in ask_in}
+    if auto_convert is True and isinstance(ask_in, str) is False:
+        ask_in = {f"{item}" for item in ask_in}
+    
 
     while True:
         inp = input(prompt)
